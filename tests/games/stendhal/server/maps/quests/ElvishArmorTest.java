@@ -65,7 +65,7 @@ public class ElvishArmorTest {
 
 	private static final List<String> NEEDEDITEMS = Arrays.asList(
 			"elvish armor", "elvish legs", "elvish boots", "elvish sword",
-			"elvish cloak", "elvish shield");
+			"elvish cloak", "elvish shield", "elvish hat");
 
 	private static SpeakerNPC npc;
 
@@ -242,6 +242,22 @@ public class ElvishArmorTest {
 
 		assertThat(npcEngine.getCurrentState(), is(QUESTION_1));
 		assertThat(getReply(npc), is("I don't think that's a piece of elvish armor..."));
+	}
+	
+	/**
+	 * Player brings an elvish hat.
+	 */
+	@Test
+	public void testQuestion1ToQuestion1ElvishHat() {
+		final Player player = PlayerTestHelper.createPlayer("bob");
+		PlayerTestHelper.equipWithItem(player, "elvish hat");
+		npcEngine.setCurrentState(QUESTION_1);
+
+		npcEngine.step(player, "elvish hat");
+
+		assertThat("elvish hat", npcEngine.getCurrentState(), is(QUESTION_1));
+		assertThat("elvish hat", getReply(npc), is("Excellent work. Is there more that you plundered?"));
+
 	}
 
 	/**
