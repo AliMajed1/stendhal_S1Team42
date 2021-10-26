@@ -118,7 +118,23 @@ public class Dojo implements ZoneConfigurator {
 		samurai.addOffer("I can offer you a #training session for a #fee.");
 		samurai.addQuest("I don't need any help, but I can let you to #train for a #fee if you have been approved by the assassins' HQ.");
 		samurai.addHelp("This is the assassins' dojo. I can let you #train here for a #fee if you're in good with HQ.");
+		
+		final ChatCondition meetsLevelCapCondition = new ChatCondition() {
+			@Override
+			public boolean fire(final Player player, final Sentence sentence, final Entity npc) {
+				return dojoArea.meetsLevelCap(player, player.getAtk());
+			}
+		};
 
+		
+		// player's ATK level is too high
+		samurai.add(ConversationStates.ATTENDING,
+				TRAIN_PHRASES,
+				meetsLevelCapCondition,
+				ConversationStates.ATTENDING,
+				"At your level of experience, your attack strength is too high to train here at this time.",
+				null);
+		
 		samurai.add(ConversationStates.ATTENDING,
 				FEE_PHRASES,
 				null,
@@ -131,12 +147,6 @@ public class Dojo implements ZoneConfigurator {
 					}
 				});
 
-		final ChatCondition meetsLevelCapCondition = new ChatCondition() {
-			@Override
-			public boolean fire(final Player player, final Sentence sentence, final Entity npc) {
-				return dojoArea.meetsLevelCap(player, player.getAtk());
-			}
-		};
 
 		final ChatCondition canAffordFeeCondition = new ChatCondition() {
 			@Override
@@ -203,14 +213,6 @@ public class Dojo implements ZoneConfigurator {
 				ConversationStates.ATTENDING,
 				null,
 				new SayTimeRemainingAction(QUEST_SLOT, 1, COOLDOWN, "You can't train again yet. Come back in"));
-
-		// player's ATK level is too high
-		samurai.add(ConversationStates.ATTENDING,
-				TRAIN_PHRASES,
-				meetsLevelCapCondition,
-				ConversationStates.ATTENDING,
-				"At your level of experience, your attack strength is too high to train here at this time.",
-				null);
 
 		// player does not have an assassins id
 		samurai.add(ConversationStates.ATTENDING,
