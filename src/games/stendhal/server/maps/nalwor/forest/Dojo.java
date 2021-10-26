@@ -124,8 +124,7 @@ public class Dojo implements ZoneConfigurator {
 			public boolean fire(final Player player, final Sentence sentence, final Entity npc) {
 				return dojoArea.meetsLevelCap(player, player.getAtk());
 			}
-		};
-
+		};		
 		
 		// player's ATK level is too high
 		samurai.add(ConversationStates.ATTENDING,
@@ -134,6 +133,8 @@ public class Dojo implements ZoneConfigurator {
 				ConversationStates.ATTENDING,
 				"At your level of experience, your attack strength is too high to train here at this time.",
 				null);
+		if (dojoArea.getTest()==0) {
+			
 		
 		samurai.add(ConversationStates.ATTENDING,
 				FEE_PHRASES,
@@ -266,7 +267,7 @@ public class Dojo implements ZoneConfigurator {
 				ConversationStates.ATTENDING,
 				"You don't even have enough money for the #fee.",
 				null);
-
+		
 		// player does not want to train
 		samurai.add(ConversationStates.QUESTION_1,
 				ConversationPhrases.NO_MESSAGES,
@@ -274,6 +275,7 @@ public class Dojo implements ZoneConfigurator {
 				ConversationStates.ATTENDING,
 				"Good luck then.",
 				null);
+		}
 	}
 
 	/**
