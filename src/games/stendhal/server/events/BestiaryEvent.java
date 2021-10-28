@@ -181,15 +181,34 @@ public class BestiaryEvent extends RPEvent {
 	 * @return
 	 * 		Formatted string.
 	 */
-	private String getFormattedString(final List<Creature> enemies) {
-		final boolean rare = enemies.equals(rareEnemies);
-		final boolean abnormal = enemies.equals(abnormalEnemies);
+	public String getFormattedString(final List<Creature> enemies) {
+		List <Creature> killedEnemiesList = new ArrayList<Creature>();
+		for (final Creature enemy: enemies) {
+			String name = enemy.getName();
+			Boolean solo = false;
+			Boolean shared = false;
+			
+			if (soloKills.contains(name)) {
+				solo = true;
+			}
+			if (sharedKills.contains(name)) {
+				shared = true;
+			}
+			
+			if (solo || shared) {
+				killedEnemiesList.add(enemy);
+			}
+			
+		}
+		final boolean rare = killedEnemiesList.equals(rareEnemies);
+		final boolean abnormal = killedEnemiesList.equals(abnormalEnemies);
 
 		final StringBuilder sb = new StringBuilder();
-		final int creatureCount = enemies.size();
+		final int creatureCount = killedEnemiesList.size();
 		int idx = 0;
+		
 
-		for (final Creature enemy: enemies) {
+		for (Creature enemy: killedEnemiesList) {
 			String name = enemy.getName();
 			Boolean solo = false;
 			Boolean shared = false;
@@ -199,11 +218,6 @@ public class BestiaryEvent extends RPEvent {
 			}
 			if (sharedKills.contains(name)) {
 				shared = true;
-			}
-
-			// hide the names of creatures not killed by player
-			if (!solo && !shared) {
-				name = "???";
 			}
 
 			if (rare) {
@@ -222,4 +236,5 @@ public class BestiaryEvent extends RPEvent {
 
 		return sb.toString();
 	}
+	
 }
