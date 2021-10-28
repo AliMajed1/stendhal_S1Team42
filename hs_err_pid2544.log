@@ -1,0 +1,33 @@
+#
+# A fatal error has been detected by the Java Runtime Environment:
+#
+#  SIGSEGV (0xb) at pc=0x00007f357493b0ad, pid=2544, tid=2555
+#
+# JRE version: OpenJDK Runtime Environment (11.0.11+9) (build 11.0.11+9-Ubuntu-0ubuntu2.20.04)
+# Java VM: OpenJDK 64-Bit Server VM (11.0.11+9-Ubuntu-0ubuntu2.20.04, mixed mode, sharing, tiered, compressed oops, serial gc, linux-amd64)
+# Problematic frame:
+# C  [libjimage.so+0x30ad]
+#
+# Core dump will be written. Default location: Core dumps may be processed with "/lib/systemd/systemd-coredump %P %u %g %s %t 9223372036854775808 %h" (or dumping to /home/csimage/git/stendhal_S1Team42/core.2544)
+#
+# If you would like to submit a bug report, please visit:
+#   https://bugs.launchpad.net/ubuntu/+source/openjdk-lts
+#
+
+---------------  S U M M A R Y ------------
+
+Command Line: -agentlib:jdwp=transport=dt_socket,suspend=y,address=localhost:36067 -Xmx128M -javaagent:/home/csimage/.eclipse/org.eclipse.platform_4.15.0_1980009725_linux_gtk_x86_64/configuration/org.eclipse.osgi/219/0/.cp/lib/javaagent-shaded.jar -Dfile.encoding=UTF-8 games.stendhal.server.StendhalServer
+
+Host: Intel(R) Core(TM) i7-10750H CPU @ 2.60GHz, 1 cores, 3G, Linux Mint 20.2 Uma
+Time: Tue Oct 19 06:02:56 2021 BST elapsed time: 2558.852473 seconds (0d 0h 42m 38s)
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x00007f356c0c2000):  JavaThread "Signal Dispatcher" daemon [_thread_in_vm, id=2555, stack(0x00007f3571abb000,0x00007f3571bbc000)]
+
+Stack: [0x00007f3571abb000,0x00007f3571bbc000],  sp=0x00007f3571bb91f0,  free space=1016k
+Native frames: (J=compiled Java code, A=aot compiled Java code, j=interpreted, Vv=VM code, C=native code)
+C  [libjimage.so+0x30ad]
+C  [libjimage.so+0x3da2]
+C  [libjimage.so+0x4291]  JIMAGE_FindResource+0xf1
+V

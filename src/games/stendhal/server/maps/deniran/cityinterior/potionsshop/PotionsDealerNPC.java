@@ -24,6 +24,7 @@ import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.CollisionAction;
 import games.stendhal.server.entity.Outfit;
+import games.stendhal.server.entity.mapstuff.sign.ShopSign;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -46,6 +47,7 @@ public class PotionsDealerNPC implements ZoneConfigurator {
 	@Override
 	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		buildNPC(zone);
+		buildSigns(zone);
 	}
 
 	private void buildNPC(final StendhalRPZone zone) {
@@ -137,4 +139,19 @@ public class PotionsDealerNPC implements ZoneConfigurator {
 
 		zone.add(npc);
 	}
+	
+	private void buildSigns(final StendhalRPZone zone) {
+		final ShopSign buys = new ShopSign("deniranpotionsbuy", "Wanda's Shop (buying)", "You can sell these things to Wanda.", false);
+		buys.setEntityClass("blackboard");
+		buys.setPosition(5, 6);
+		
+		final ShopSign sells = new ShopSign("deniranpotionssell", "Wanda's Shop (selling)", "You can buy these things from Wanda.", false);
+		sells.setEntityClass("blackboard");
+		sells.setPosition(10, 6);
+		
+		zone.add(buys);
+		zone.add(sells);
+	}
+	
+	
 }
