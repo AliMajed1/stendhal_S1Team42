@@ -65,6 +65,7 @@ public class TrainingArea extends Area implements LoginListener,LogoutListener {
 	private final Direction entersFrom;
 	// maximum number of players allowed in area at a single time.
 	private Integer maxCapacity;
+	private int test=0;
 
 	private final TrainerNPC trainer;
 
@@ -74,7 +75,9 @@ public class TrainingArea extends Area implements LoginListener,LogoutListener {
 
 	private static final Map<String, TrainingTimer> activeTimers = new HashMap<>();
 
-
+	public int getTest(){
+		return test;
+	}
 	public TrainingArea(final String slot, final StendhalRPZone zone, final Rectangle shape,
 			final TrainerNPC trainer, final Point endPos, final Point gatePos, final Direction entersFrom) {
 		super(zone, shape);
@@ -139,6 +142,9 @@ public class TrainingArea extends Area implements LoginListener,LogoutListener {
 	 * 		<code>true</code> if the player's stat/level is too high to train.
 	 */
 	public boolean meetsLevelCap(final Player player, final int statLevel) {
+		if (statLevel >= calculateLevelCap(player.getLevel())) {
+			test=1;
+		}
 		return statLevel >= calculateLevelCap(player.getLevel());
 	}
 
