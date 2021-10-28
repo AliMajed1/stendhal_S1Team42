@@ -20,6 +20,7 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.condition.LevelGreaterThanCondition;
 import games.stendhal.server.entity.npc.condition.LevelLessThanCondition;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.entity.npc.action.IncreaseXPAction;
 
 /**
  * QUEST: Speak with Zynn PARTICIPANTS: - Zynn
@@ -41,17 +42,20 @@ public class MeetZynn extends AbstractQuest {
 		npc
 				.addReply(
 						"history",
-						"At present, there are two significant powers on Faiumoni; the Deniran Empire, and the dark legions of Blordrough. Blordrough has recently conquered the south of the island, seizing several steel mines and a large gold mine. At present, Deniran still controls the central and northern parts of Faiumoni, including several gold and mithril mines.");
+						"At present, there are two significant powers on Faiumoni; the Deniran Empire, and the dark legions of Blordrough. Blordrough has recently conquered the south of the island, seizing several steel mines and a large gold mine. At present, Deniran still controls the central and northern parts of Faiumoni, including several gold and mithril mines.",
+						new IncreaseXPAction(5));
 
 		npc
 				.addReply(
 						"news",
-						"The Deniran Empire is currently seeking adventurers to sign on as mercenaries with their army to retake southern Faiumoni from the forces of Blordrough. Unfortunately Blordrough is still holding out against everything the Empire can throw at him.");
+						"The Deniran Empire is currently seeking adventurers to sign on as mercenaries with their army to retake southern Faiumoni from the forces of Blordrough. Unfortunately Blordrough is still holding out against everything the Empire can throw at him.", 
+						new IncreaseXPAction(5));
 
 		npc
 				.addReply(
 						"geography",
-						"Let's talk about the different #places you can visit on Faiumoni! I can also help you #get and #use a map, or give you advice on using the psychic #SPS system.");
+						"Let's talk about the different #places you can visit on Faiumoni! I can also help you #get and #use a map, or give you advice on using the psychic #SPS system.",
+						new IncreaseXPAction(5));
 
 		npc
 				.addReply(
