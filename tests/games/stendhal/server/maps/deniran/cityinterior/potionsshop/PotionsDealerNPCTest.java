@@ -61,7 +61,7 @@ public class PotionsDealerNPCTest extends ZonePlayerAndNPCTestImpl {
 		
 		final ShopSign sellBlackboard = (ShopSign) zone.getEntityAt(10, 6);
 		
-		final ShopSign sells = new ShopSign("deniranequipsell", "Wanda's Shop (selling)", "You can buy these things from Wanda.", false);
+		final ShopSign sells = new ShopSign("deniranpotionssell", "Wanda's Shop (selling)", "You can buy these things from Wanda.", false);
 		sells.setEntityClass("blackboard");
 		sells.setPosition(10, 6);
 		
