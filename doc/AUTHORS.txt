@@ -3,6 +3,28 @@ https://stendhalgame.org/wiki/ArianneAuthors
 
 Authors of Stendhal are:
 
+
+- Omar AbdelMegid
+  · Coder/NPC
+  · Bugs Fixer
+- Max Lawley
+  · Coder/NPC
+  · Bugs Fixer
+- Alex Chiu
+  · Coder/NPC
+  · Bugs Fixer
+- Varun Shankar
+  · Coder
+  · Bugs Fixer
+- Ben Welland
+  · Coder
+  · Bugs Fixer
+- Ali Al Majed
+  · Coder/NPC
+  · Bugs Fixer
+- Rashed Alshamsi
+  · Coder/NPC
+  · Bugs Fixer
 - Miguel Angel Blanch Lardin
   · Project founder
   · Project leader

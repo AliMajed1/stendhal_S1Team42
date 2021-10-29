@@ -1,6 +1,22 @@
 Changelog
 ---------
 ---------
+1.36uom
+*world*
+- new items:
+  - added blackboards to deniran potion shop
+- NPC changes:
+  - Zynn Iwuhos dialogue now grants XP
+  - fixed Omura Sumitada's dialogue
+- quest changes:
+  - Lupos now requires an elvish hat for his quest
+- enemy changes:
+  - Fixed solar and glacier centaur element susceptibility
+  
+ *fixes*
+ - teleport scrolls don't work when poisoned
+ - bestiary item now only shows creatures creatures that player killed.
+ 
 
 1.36
 *world*
