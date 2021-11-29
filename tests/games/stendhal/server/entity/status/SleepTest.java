@@ -23,6 +23,7 @@ import games.stendhal.server.entity.item.ConsumableItem;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import utilities.PlayerTestHelper;
+import utilities.RPClass.ConsumableTestHelper;
 
 public class SleepTest() {
 
@@ -53,8 +54,14 @@ public class SleepTest() {
 		/* Create an instance of a sleeping player */
 		final Player player = PlayerTestHelper.createPlayer("bob");
 		final Player player2 = PlayerTestHelper.createPlayer("bob2");
+		// create attacker
+		player.damage(50, attacker);
 		// set player to sleep
 		// player2 eats
+		ConsumableItem eater = ConsumableTestHelper.createEater("consume");
+		player2.equip("rhand", eater);
+		eater.onUsed(player2);
+		assertTrue(player2.hasStatus(StatusType.EATING));
 		// set player2 to sleep
 		assertTrue(player.hasStatus(StatusType.SLEEPING));
 		assertTrue(player2.hasStatus(StatusType.SLEEPING));
@@ -78,6 +85,7 @@ public class SleepTest() {
 		assertTrue(player2.hasStatus(StatusType.POISONED));
 		// make the player go to sleep
 		assertTrue(player.hasStatus(StatusType.SLEEPING));
+		assertTrue(player2.hasStatus(StatusType.SLEEPING));
 		// check that the poison damage from poison, player2, is greater than the sleeping damage while poisoned, player
 		
 	}
