@@ -40,7 +40,46 @@ public class SleepTest() {
 	@Test
 	public void testSleeping() {
 		/* Create an instance of a sleeping player */
-		assertTrue(player.hasStatus(StatusType.SLEEPING))
+		final Player player = PlayerTestHelper.createPlayer("bob");
+		// set player to sleep
+		assertTrue(player.hasStatus(StatusType.SLEEPING));
+	}
+
+	/**
+	 * Tests for eating increasing healing while sleeping
+	 */
+	@Test
+	public void testSleepingEating() {
+		/* Create an instance of a sleeping player */
+		final Player player = PlayerTestHelper.createPlayer("bob");
+		final Player player2 = PlayerTestHelper.createPlayer("bob2");
+		// set player to sleep
+		// player2 eats
+		// set player2 to sleep
+		assertTrue(player.hasStatus(StatusType.SLEEPING));
+		assertTrue(player2.hasStatus(StatusType.SLEEPING));
+		// compare player vs player2 healing, player2 should be greater
+	}
+	
+	/**
+	 * Tests for poison slowing while sleeping
+	 */
+	@Test
+	public void testSleepingPoisoned() {
+		final String poisontype = "greater poison";
+		final ConsumableItem poison = (ConsumableItem) SingletonRepository.getEntityManager().getItem(poisontype);
+
+		final PoisonAttacker poisoner = new PoisonAttacker(100, poison);
+		final Player player = PlayerTestHelper.createPlayer("bob");
+		final Player player2 = PlayerTestHelper.createPlayer("bob2");
+		poisoner.onAttackAttempt(player, SingletonRepository.getEntityManager().getCreature("snake"));
+		poisoner.onAttackAttempt(player2, SingletonRepository.getEntityManager().getCreature("snake"));
+		assertTrue(player.hasStatus(StatusType.POISONED));
+		assertTrue(player2.hasStatus(StatusType.POISONED));
+		// make the player go to sleep
+		assertTrue(player.hasStatus(StatusType.SLEEPING));
+		// check that the poison damage from poison, player2, is greater than the sleeping damage while poisoned, player
+		
 	}
 
 }
