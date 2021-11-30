@@ -43,7 +43,7 @@ public enum StatusType {
 	/** reduced movement speed */
 	HEAVY(new HeavyStatusHandler()),
 	
-	/** Sleeping*/
+	/**  is sleeping */
 	SLEEPING(new SleepStatusHandler());
 
 	/** the status handler for this StatusType */
