@@ -64,6 +64,9 @@ public class SleepTest {
 		poisoner.onAttackAttempt(player, SingletonRepository.getEntityManager().getCreature("snake"));
 		poisoner.onAttackAttempt(player2, SingletonRepository.getEntityManager().getCreature("snake"));
 		
+		assertTrue(player.hasStatus(StatusType.POISONED));
+		assertTrue(player2.hasStatus(StatusType.POISONED));
+		
 		assertTrue(player.hasStatus(StatusType.SLEEPING));
 		assertTrue(player2.hasStatus(StatusType.SLEEPING));
 		
