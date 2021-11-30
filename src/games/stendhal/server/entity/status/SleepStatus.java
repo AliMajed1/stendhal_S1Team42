@@ -4,7 +4,7 @@ package games.stendhal.server.entity.status;
 public class SleepStatus extends Status  {
 
 	
-	public SleepStatus(String name) {
+	public SleepStatus() {
 		super("sleep");
 	}
 	

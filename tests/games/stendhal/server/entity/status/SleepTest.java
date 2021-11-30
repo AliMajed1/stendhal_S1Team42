@@ -1,19 +1,8 @@
-/* $Id$ */
-/***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
- ***************************************************************************
- ***************************************************************************
- *                                                                         *
- *   This program is free software; you can redistribute it and/or modify  *
- *   it under the terms of the GNU General Public License as published by  *
- *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   *
- *                                                                         *
- ***************************************************************************/
 package games.stendhal.server.entity.status;
 
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.*;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -25,7 +14,7 @@ import games.stendhal.server.maps.MockStendlRPWorld;
 import utilities.PlayerTestHelper;
 import utilities.RPClass.ConsumableTestHelper;
 
-public class SleepTest() {
+public class SleepTest {
 
 	/**
 	 * initialisation
@@ -41,53 +30,42 @@ public class SleepTest() {
 	@Test
 	public void testSleeping() {
 		/* Create an instance of a sleeping player */
+		
 		final Player player = PlayerTestHelper.createPlayer("bob");
 		// set player to sleep
 		assertTrue(player.hasStatus(StatusType.SLEEPING));
 	}
 
-	/**
-	 * Tests for eating increasing healing while sleeping
-	 */
 	@Test
 	public void testSleepingEating() {
-		/* Create an instance of a sleeping player */
 		final Player player = PlayerTestHelper.createPlayer("bob");
 		final Player player2 = PlayerTestHelper.createPlayer("bob2");
-		// create attacker
+		Player attacker = PlayerTestHelper.createPlayer("killer");
 		player.damage(50, attacker);
-		// set player to sleep
-		// player2 eats
+		player2.damage(50, attacker);
 		ConsumableItem eater = ConsumableTestHelper.createEater("consume");
 		player2.equip("rhand", eater);
 		eater.onUsed(player2);
+		// set players to sleep
 		assertTrue(player2.hasStatus(StatusType.EATING));
-		// set player2 to sleep
 		assertTrue(player.hasStatus(StatusType.SLEEPING));
 		assertTrue(player2.hasStatus(StatusType.SLEEPING));
-		// compare player vs player2 healing, player2 should be greater
-	}
-	
-	/**
-	 * Tests for poison slowing while sleeping
-	 */
+		assertThat("timestamp", player2.getHP(), greaterThan(player.getHP()));
+		}
 	@Test
 	public void testSleepingPoisoned() {
 		final String poisontype = "greater poison";
 		final ConsumableItem poison = (ConsumableItem) SingletonRepository.getEntityManager().getItem(poisontype);
-
+		
 		final PoisonAttacker poisoner = new PoisonAttacker(100, poison);
 		final Player player = PlayerTestHelper.createPlayer("bob");
 		final Player player2 = PlayerTestHelper.createPlayer("bob2");
+		
 		poisoner.onAttackAttempt(player, SingletonRepository.getEntityManager().getCreature("snake"));
 		poisoner.onAttackAttempt(player2, SingletonRepository.getEntityManager().getCreature("snake"));
-		assertTrue(player.hasStatus(StatusType.POISONED));
-		assertTrue(player2.hasStatus(StatusType.POISONED));
-		// make the player go to sleep
+		
 		assertTrue(player.hasStatus(StatusType.SLEEPING));
 		assertTrue(player2.hasStatus(StatusType.SLEEPING));
-		// check that the poison damage from poison, player2, is greater than the sleeping damage while poisoned, player
 		
 	}
-
 }

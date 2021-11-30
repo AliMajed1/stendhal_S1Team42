@@ -38,6 +38,12 @@ public class SleepStatusHandler implements StatusHandler<SleepStatus>{
 		if (entity == null) {
 			return;
 		}
+		PoisonStatus poisoned = statusList.getFirstStatusByClass(PoisonStatus.class);
+		if(poisoned != null) {
+			PoisonStatus poison = new PoisonStatus(poisoned.getAmount(), poisoned.getFrecuency(), poisoned.getRegen()*2);
+			statusList.remove(poisoned);
+			statusList.addInternal(poison);		
+		}
 
 		entity.sendPrivateText(NotificationType.SCENE_SETTING, "You are no longer sleeping.");
 		entity.remove("status_" + status.getName());		
