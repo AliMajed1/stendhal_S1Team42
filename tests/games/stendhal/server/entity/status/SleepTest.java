@@ -14,6 +14,8 @@ import org.junit.Test;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.ConsumableItem;
 import games.stendhal.server.entity.item.SleepingBag;
+import games.stendhal.server.entity.item.consumption.Feeder;
+import games.stendhal.server.entity.item.consumption.FeederFactory;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import utilities.PlayerTestHelper;
@@ -51,8 +53,8 @@ public class SleepTest {
 		player.damage(50, attacker);
 		player2.damage(50, attacker);
 		ConsumableItem eater = ConsumableTestHelper.createEater("consume");
-		player2.equip("rhand", eater);
-		eater.onUsed(player2);
+		Feeder feeder = FeederFactory.get(eater);
+		feeder.feed(eater, player2);
 		final SleepingBag bag = new SleepingBag(new HashMap<String, String>());
 		final SleepingBag bag2 = new SleepingBag(new HashMap<String, String>());
 		bag.onUsed(player);
@@ -81,6 +83,6 @@ public class SleepTest {
 		bag.onUsed(player);
 		assertTrue(player.hasStatus(StatusType.SLEEPING));
 		assertFalse(player2.hasStatus(StatusType.SLEEPING));
-		assertThat("timestamp", player.getHP(), greaterThan(player2.getHP()));
+		assertThat("timestamp", player.getStatusList().getFirstStatusByClass(PoisonStatus.class).getRegen(), greaterThan(player2.getStatusList().getFirstStatusByClass(PoisonStatus.class).getRegen()));
 	}
 }
