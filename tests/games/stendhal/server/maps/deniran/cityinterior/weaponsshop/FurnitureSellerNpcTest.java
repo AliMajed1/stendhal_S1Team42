@@ -15,6 +15,9 @@ import utilities.QuestHelper;
 import utilities.ZonePlayerAndNPCTestImpl;
 
 public class FurnitureSellerNpcTest extends ZonePlayerAndNPCTestImpl
+
+//Set up initial test
+
 {
 	private static final String ZONE_NAME = "int_deniran_weapons_shop";
 	
