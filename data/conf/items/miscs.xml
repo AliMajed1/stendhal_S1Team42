@@ -388,7 +388,7 @@
   <item name="chair">
   	  <type class="misc" subclass="chair" tileid="-1" />
   	  <description>A lovely chair to enjoy</description>
-  	  <implementation class-name="games.stendhal.server.entity.item.Item"/>
+  	  <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
   	  <attributes>
   	  </attributes>
   	  <weight value="5" />
@@ -406,7 +406,7 @@
     <item name="stool">
   	  <type class="misc" subclass="stool" tileid="-1" />
   	  <description>A lovely big table to enjoy</description>
-  	  <implementation class-name="games.stendhal.server.entity.item.Item"/>
+  	  <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
   	  <attributes>
   	  </attributes>
   	  <weight value="30" />
