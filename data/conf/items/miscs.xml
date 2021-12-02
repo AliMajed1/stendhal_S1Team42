@@ -390,6 +390,8 @@
   	  <description>A lovely chair to enjoy</description>
   	  <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
   	  <attributes>
+  	    <quantity value="1"/>
+        <max_quantity value="2147483647"/>
   	  </attributes>
   	  <weight value="5" />
   	  <value value="150" />
@@ -408,6 +410,8 @@
   	  <description>A lovely big table to enjoy</description>
   	  <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
   	  <attributes>
+  	    <quantity value="1"/>
+        <max_quantity value="2147483647"/>
   	  </attributes>
   	  <weight value="30" />
   	  <value value="300" />
