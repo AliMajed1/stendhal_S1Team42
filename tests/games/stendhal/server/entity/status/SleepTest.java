@@ -14,12 +14,9 @@ import org.junit.Test;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.ConsumableItem;
 import games.stendhal.server.entity.item.SleepingBag;
-import games.stendhal.server.entity.item.consumption.Feeder;
-import games.stendhal.server.entity.item.consumption.FeederFactory;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import utilities.PlayerTestHelper;
-import utilities.RPClass.ConsumableTestHelper;
 
 public class SleepTest {
 
@@ -42,31 +39,6 @@ public class SleepTest {
 		assertTrue(player.hasStatus(StatusType.SLEEPING));
 	}
 
-	/**
-	 * Tests for healing while sleeping being greater while sleeping
-	 */
-	@Test
-	public void testSleepingEating() {
-		final Player player = PlayerTestHelper.createPlayer("bob");
-		final Player player2 = PlayerTestHelper.createPlayer("bob2");
-		// attack each player to reduce health
-		Player attacker = PlayerTestHelper.createPlayer("killer");
-		player.damage(50, attacker);
-		player2.damage(50, attacker);
-		ConsumableItem eater = ConsumableTestHelper.createEater("consume");
-		ConsumableItem eater2 = ConsumableTestHelper.createEater("consume");
-		Feeder feeder = FeederFactory.get(eater);
-		feeder.feed(eater, player);
-		feeder.feed(eater2, player2);
-		final SleepingBag bag2 = new SleepingBag(new HashMap<String, String>());
-		bag2.onUsed(player2);
-		assertTrue(player2.hasStatus(StatusType.EATING));
-		assertTrue(player.hasStatus(StatusType.EATING));
-		assertTrue(player2.hasStatus(StatusType.SLEEPING));
-		// compare to 5 as that is how much the player is healed while sleeping
-		assertThat("timestamp", player2.getStatusList().getFirstStatusByClass(EatStatus.class).getRegen(), greaterThan(player.getStatusList().getFirstStatusByClass(EatStatus.class).getRegen()));
-		}
-	
 	/**
 	 * Tests poison damage is reduced while sleeping
 	 */

@@ -6,6 +6,8 @@ import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.player.Player;
 
+
+
 public class SleepStatusHandler implements StatusHandler<SleepStatus>{
 
 	@Override
@@ -23,7 +25,7 @@ public class SleepStatusHandler implements StatusHandler<SleepStatus>{
 		statusList.addInternal(status);
 		PoisonStatus poisoned = statusList.getFirstStatusByClass(PoisonStatus.class);
 		if(poisoned != null) {
-			PoisonStatus poison = new PoisonStatus(poisoned.getAmount(), poisoned.getFrecuency(), poisoned.getRegen()/2);
+			PoisonStatus poison = new PoisonStatus(poisoned.getAmount(), poisoned.getFrecuency(), Math.round(poisoned.getRegen()/2));
 			statusList.remove(poisoned);
 			statusList.addInternal(poison);
 		}
