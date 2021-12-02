@@ -635,5 +635,10 @@
 		<item name="greater antidote" price="150" />
 		<item name="sedative" price="400" />
 	</shop>
+	
+	<shop name="deniranFurnitureStore" type="sells">
+		<item name="chair" price="150" />
+		<item name="stool" price="50" />
+	</shop>
 
 </shops>

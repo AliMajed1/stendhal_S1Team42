@@ -384,5 +384,41 @@
       <slot name="rhand"/>
     </equipable>
   </item>
+  
+  <item name="chair">
+  	  <type class="misc" subclass="chair" tileid="-1" />
+  	  <description>A lovely chair to enjoy</description>
+  	  <implementation class-name="games.stendhal.server.entity.item.Item"/>
+  	  <attributes>
+  	  </attributes>
+  	  <weight value="5" />
+  	  <value value="150" />
+  	  <equipable>
+  	    <slot name="ground"/>
+     	<slot name="content"/>
+        <slot name="bag"/>
+        <slot name="trade"/>
+        <slot name="lhand"/>
+        <slot name="rhand"/>
+  	  </equipable>
+    </item>
+  
+    <item name="stool">
+  	  <type class="misc" subclass="stool" tileid="-1" />
+  	  <description>A lovely big table to enjoy</description>
+  	  <implementation class-name="games.stendhal.server.entity.item.Item"/>
+  	  <attributes>
+  	  </attributes>
+  	  <weight value="30" />
+  	  <value value="300" />
+  	  <equipable>
+  	    <slot name="ground"/>
+     	<slot name="content"/>
+        <slot name="bag"/>
+        <slot name="trade"/>
+        <slot name="lhand"/>
+        <slot name="rhand"/>
+  	  </equipable>
+    </item>
 
 </items>

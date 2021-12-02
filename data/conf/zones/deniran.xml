@@ -1165,6 +1165,7 @@
 
 		<!-- NPCs -->
 		<configurator class-name="games.stendhal.server.maps.deniran.cityinterior.weaponsshop.WeaponDealerNPC" />
+		<configurator class-name="games.stendhal.server.maps.deniran.cityinterior.weaponsshop.FurnitureSellerNPC" />
 
 	</zone>
 
