@@ -54,16 +54,17 @@ public class SleepTest {
 		player.damage(50, attacker);
 		player2.damage(50, attacker);
 		ConsumableItem eater = ConsumableTestHelper.createEater("consume");
+		ConsumableItem eater2 = ConsumableTestHelper.createEater("consume");
 		Feeder feeder = FeederFactory.get(eater);
-		feeder.feed(eater, player2);
-		final SleepingBag bag = new SleepingBag(new HashMap<String, String>());
+		feeder.feed(eater, player);
+		feeder.feed(eater2, player2);
 		final SleepingBag bag2 = new SleepingBag(new HashMap<String, String>());
-		bag.onUsed(player);
 		bag2.onUsed(player2);
 		assertTrue(player2.hasStatus(StatusType.EATING));
-		assertTrue(player.hasStatus(StatusType.SLEEPING));
+		assertTrue(player.hasStatus(StatusType.EATING));
 		assertTrue(player2.hasStatus(StatusType.SLEEPING));
-		assertThat("timestamp", player2.getHP(), greaterThan(player.getHP()));
+		// compare to 5 as that is how much the player is healed while sleeping
+		assertThat("timestamp", player2.getStatusList().getFirstStatusByClass(EatStatus.class).getRegen(), greaterThan(player.getStatusList().getFirstStatusByClass(EatStatus.class).getRegen()));
 		}
 	
 	/**

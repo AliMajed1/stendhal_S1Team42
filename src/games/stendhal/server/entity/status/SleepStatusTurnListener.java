@@ -23,22 +23,10 @@ public class SleepStatusTurnListener implements TurnListener{
 	
 	sleeper.forceStop();
 	
-	EatStatus eating = statusList.getFirstStatusByClass(EatStatus.class);
-	PoisonStatus poisoned = statusList.getFirstStatusByClass(PoisonStatus.class);
 	
-	if(eating == null) {
-		sleeper.heal(5);
-	} else {
-		sleeper.heal(10);
-	}
+	sleeper.heal(5);
 	
-	if(poisoned != null) {
-		PoisonStatus poison = new PoisonStatus(poisoned.getAmount(), poisoned.getFrecuency(), poisoned.getRegen()/2);
-		statusList.remove(poisoned);
-		statusList.addInternal(poison);
-	}
-	
-	
+		
 	TurnNotifier.get().notifyInTurns(0, this);
 		
 	}

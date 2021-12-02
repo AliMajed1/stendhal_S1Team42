@@ -21,6 +21,19 @@ public class SleepStatusHandler implements StatusHandler<SleepStatus>{
 		sleeper.sendPrivateText(NotificationType.SCENE_SETTING, "You are sleeping.");
 		statusList.activateStatusAttribute("status_" + status.getName());
 		statusList.addInternal(status);
+		PoisonStatus poisoned = statusList.getFirstStatusByClass(PoisonStatus.class);
+		if(poisoned != null) {
+			PoisonStatus poison = new PoisonStatus(poisoned.getAmount(), poisoned.getFrecuency(), poisoned.getRegen()/2);
+			statusList.remove(poisoned);
+			statusList.addInternal(poison);
+		}
+		EatStatus eating = statusList.getFirstStatusByClass(EatStatus.class);
+		if(eating != null) {
+			PoisonStatus eating2 = new PoisonStatus(eating.getAmount(), eating.getFrecuency(), eating.getRegen()*2);
+			statusList.remove(eating);
+			statusList.addInternal(eating2);
+		}
+			
 		TurnNotifier.get().notifyInSeconds(60, new StatusRemover(statusList, status));
 	}
 
@@ -38,7 +51,12 @@ public class SleepStatusHandler implements StatusHandler<SleepStatus>{
 			statusList.remove(poisoned);
 			statusList.addInternal(poison);		
 		}
-
+		EatStatus eating = statusList.getFirstStatusByClass(EatStatus.class);
+		if(eating != null) {
+			PoisonStatus eating2 = new PoisonStatus(eating.getAmount(), eating.getFrecuency(), eating.getRegen()/2);
+			statusList.remove(eating);
+			statusList.addInternal(eating2);
+		}
 		entity.sendPrivateText(NotificationType.SCENE_SETTING, "You are no longer sleeping.");
 		entity.remove("status_" + status.getName());		
 	}
