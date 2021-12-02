@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<items xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="stendhal ../items.xsd ">
+
+  <item name="sleeping bag">
+    <type class="sword" subclass="assassin_dagger" tileid="-1"/>
+    <description></description>
+    <implementation class-name="games.stendhal.server.entity.item.SleepingBa"/>
+    <attributes><quantity value="1" ></quantity><menu value="Use" >   </attributes>
+    <weight value="0.01"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="ground"/>
+      <slot name="content"/>
+      <slot name="bag"/>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+    </equipable>
+  </item>
+
+</items>
