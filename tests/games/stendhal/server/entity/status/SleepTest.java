@@ -49,6 +49,7 @@ public class SleepTest {
 	public void testSleepingEating() {
 		final Player player = PlayerTestHelper.createPlayer("bob");
 		final Player player2 = PlayerTestHelper.createPlayer("bob2");
+		// attack each player to reduce health
 		Player attacker = PlayerTestHelper.createPlayer("killer");
 		player.damage(50, attacker);
 		player2.damage(50, attacker);
