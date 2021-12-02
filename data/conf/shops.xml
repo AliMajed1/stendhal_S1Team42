@@ -635,5 +635,15 @@
 		<item name="greater antidote" price="150" />
 		<item name="sedative" price="400" />
 	</shop>
+	
+	<!-- Temporary Stall Shop -->
+	<shop name="Player's Stall" type="sells">
+		<item name="minor potion" price="44" />
+		<item name="tea" price="1" />
+		<item name="water" price="1" />
+		<item name="toadstool" price="2" />
+		<item name="poison" price="3" />
+		<item name="meat" price="10" />
+	</shop>
 
 </shops>

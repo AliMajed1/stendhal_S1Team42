@@ -152,6 +152,35 @@
 			<destination zone="int_deniran_pawn_shop" ref="entrance" />
 			<attribute name="move.continuous" />
 		</portal>
+		
+		<entity x="38" y="89">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.chest.PersonalChest">
+			</implementation>
+		</entity>
+		
+		<entity x="32" y="92">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.chest.PersonalChest">
+			</implementation>
+		</entity>
+		
+		
+		<entity x="36" y="96">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.chest.PersonalChest">
+			</implementation>
+		</entity>
+		
+		<!-- NPCs -->
+		<configurator class-name="games.stendhal.server.maps.deniran.StallWorkerNPC" />
+		<configurator class-name="games.stendhal.server.maps.deniran.StallWorkerNPC2" />
+		<configurator class-name="games.stendhal.server.maps.deniran.StallWorkerNPC3" />
+		
+		
+    
+    
+		
+		
+		
+		
 
 	</zone>
 
