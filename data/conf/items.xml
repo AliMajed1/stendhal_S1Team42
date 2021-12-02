@@ -30,7 +30,7 @@
 	<group uri="items/rings.xml"/>
 	<group uri="items/scrolls.xml"/>
 	<group uri="items/special.xml"/>
-	<group uri="items/shields.xml"/>
+	<group uri="items/shields.xml"/><group uri="items/sleepingbag.xml" />
 	<group uri="items/swords.xml"/>
 	<group uri="items/tokens.xml"/>
 	<group uri="items/tools.xml"/>

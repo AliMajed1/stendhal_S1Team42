@@ -1,6 +1,10 @@
 package games.stendhal.server.entity.status;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+
+import java.util.HashMap;
+
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
@@ -9,6 +13,7 @@ import org.junit.Test;
 
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.ConsumableItem;
+import games.stendhal.server.entity.item.SleepingBag;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import utilities.PlayerTestHelper;
@@ -29,13 +34,15 @@ public class SleepTest {
 	 */
 	@Test
 	public void testSleeping() {
-		/* Create an instance of a sleeping player */
-		
 		final Player player = PlayerTestHelper.createPlayer("bob");
-		// set player to sleep
+		final SleepingBag bag = new SleepingBag(new HashMap<String, String>());
+		bag.onUsed(player);
 		assertTrue(player.hasStatus(StatusType.SLEEPING));
 	}
 
+	/**
+	 * Tests for healing while sleeping being greater while sleeping
+	 */
 	@Test
 	public void testSleepingEating() {
 		final Player player = PlayerTestHelper.createPlayer("bob");
@@ -46,29 +53,34 @@ public class SleepTest {
 		ConsumableItem eater = ConsumableTestHelper.createEater("consume");
 		player2.equip("rhand", eater);
 		eater.onUsed(player2);
-		// set players to sleep
+		final SleepingBag bag = new SleepingBag(new HashMap<String, String>());
+		final SleepingBag bag2 = new SleepingBag(new HashMap<String, String>());
+		bag.onUsed(player);
+		bag2.onUsed(player2);
 		assertTrue(player2.hasStatus(StatusType.EATING));
 		assertTrue(player.hasStatus(StatusType.SLEEPING));
 		assertTrue(player2.hasStatus(StatusType.SLEEPING));
 		assertThat("timestamp", player2.getHP(), greaterThan(player.getHP()));
 		}
+	
+	/**
+	 * Tests poison damage is reduced while sleeping
+	 */
 	@Test
 	public void testSleepingPoisoned() {
 		final String poisontype = "greater poison";
 		final ConsumableItem poison = (ConsumableItem) SingletonRepository.getEntityManager().getItem(poisontype);
-		
 		final PoisonAttacker poisoner = new PoisonAttacker(100, poison);
 		final Player player = PlayerTestHelper.createPlayer("bob");
 		final Player player2 = PlayerTestHelper.createPlayer("bob2");
-		
 		poisoner.onAttackAttempt(player, SingletonRepository.getEntityManager().getCreature("snake"));
 		poisoner.onAttackAttempt(player2, SingletonRepository.getEntityManager().getCreature("snake"));
-		
 		assertTrue(player.hasStatus(StatusType.POISONED));
 		assertTrue(player2.hasStatus(StatusType.POISONED));
-		
+		final SleepingBag bag = new SleepingBag(new HashMap<String, String>());
+		bag.onUsed(player);
 		assertTrue(player.hasStatus(StatusType.SLEEPING));
-		assertTrue(player2.hasStatus(StatusType.SLEEPING));
-		
+		assertFalse(player2.hasStatus(StatusType.SLEEPING));
+		assertThat("timestamp", player.getHP(), greaterThan(player2.getHP()));
 	}
 }

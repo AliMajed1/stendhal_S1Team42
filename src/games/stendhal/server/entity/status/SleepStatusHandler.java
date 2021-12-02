@@ -5,7 +5,6 @@ import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.player.Player;
-import java.lang.Math;
 
 public class SleepStatusHandler implements StatusHandler<SleepStatus>{
 
@@ -17,11 +16,6 @@ public class SleepStatusHandler implements StatusHandler<SleepStatus>{
 		}
 		Player sleeper = (Player) statusList.getEntity();
 		if(sleeper == null) {
-			return;
-		}
-		if(Math.abs(bed.getX() - sleeper.getX()) < 2 && Math.abs(bed.getY() - sleeper.getY()) < 2) {
-			sleeper.setSpeed(0);
-		} else {
 			return;
 		}
 		sleeper.sendPrivateText(NotificationType.SCENE_SETTING, "You are sleeping.");
