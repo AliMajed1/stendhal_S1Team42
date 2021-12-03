@@ -1,6 +1,20 @@
 Changelog
 ---------
 ---------
+1.37uom
+*world*
+- new items:
+  - furniture (chair and stool)
+  - sleeping bag
+  - blackboards and a player's stall to the flea market
+- NPC changes:
+  - new NPC Max sells furniture in deniran's weapons shop
+  - new StallWorker NPCs in the flea market that manage stalls
+- players can now sleep in their sleeping bags
+*fixes*
+- map fixes
+
+
 1.36uom
 *world*
 - new items:
